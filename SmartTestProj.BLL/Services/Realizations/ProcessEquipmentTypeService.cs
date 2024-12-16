@@ -1,10 +1,11 @@
 ﻿using SmartTestProj.BLL.Dto.ProcessEquipmentType;
+using SmartTestProj.BLL.Services.Interfaces;
 using SmartTestProj.DAL.Entities;
 using SmartTestProj.DAL.Repository.Interface;
 
 namespace SmartTestProj.BLL.Services.Realizations
 {
-    public class ProcessEquipmentTypeService
+    public class ProcessEquipmentTypeService : IProcessEquipmentTypeService
     {
         private readonly IProcessEquipmentTypeRepository _processEquipmentTypeRepository;
 
@@ -24,7 +25,7 @@ namespace SmartTestProj.BLL.Services.Realizations
             {
                 return "Item not found";
             }
-           
+
             catch (Exception ex)
             {
                 throw new ApplicationException($"Something went wrong", ex);
