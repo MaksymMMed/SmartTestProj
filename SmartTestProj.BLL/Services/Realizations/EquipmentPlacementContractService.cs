@@ -38,6 +38,10 @@ namespace SmartTestProj.BLL.Services.Realizations
         {
             try
             {
+                if (dto.UnitsCount <=0)
+                {
+                    return ("Units count must be creater than 0");
+                }
                 var item = new EquipmentPlacementContract();
                 {
                     item.ProductionFacilityId = dto.ProductionFacilityId;

@@ -36,6 +36,14 @@ namespace SmartTestProj.BLL.Services.Realizations
         {
             try
             {
+                if (dto.Area<=0)
+                {
+                    return "Area must be creater than 0";
+                }
+                if (dto.Name == "")
+                {
+                    return "Invalid name";
+                }
                 var item = new ProcessEquipmentType();
                 {
                     item.Area = dto.Area;
@@ -54,13 +62,21 @@ namespace SmartTestProj.BLL.Services.Realizations
         {
             try
             {
+                if (dto.Area <= 0)
+                {
+                    return "Area must be creater than 0";
+                }
+                if (dto.Name == "")
+                {
+                    return "Invalid name";
+                }
                 var item = new ProcessEquipmentType();
                 {
                     item.Id = dto.Id;
                     item.Area = dto.Area;
                     item.Name = dto.Name;
                 }
-                await _processEquipmentTypeRepository.Insert(item);
+                await _processEquipmentTypeRepository.Update(item);
                 return "Updated successful";
             }
             catch (Exception ex)

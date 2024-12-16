@@ -36,6 +36,14 @@ namespace SmartTestProj.BLL.Services.Realizations
         {
             try
             {
+                if (dto.StandartArea <= 0)
+                {
+                    return "Area must be creater than 0";
+                }
+                if (dto.Name == "")
+                {
+                    return "Invalid name";
+                }
                 var item = new ProductionFacility();
                 {
                     item.StandartArea = dto.StandartArea;
@@ -54,13 +62,21 @@ namespace SmartTestProj.BLL.Services.Realizations
         {
             try
             {
+                if (dto.StandartArea <= 0)
+                {
+                    return "Area must be creater than 0";
+                }
+                if (dto.Name == "")
+                {
+                    return "Invalid name";
+                }
                 var item = new ProductionFacility();
                 {
                     item.Id = dto.Id;
                     item.StandartArea = dto.StandartArea;
                     item.Name = dto.Name;
                 }
-                await _productionFacilityRepository.Insert(item);
+                await _productionFacilityRepository.Update(item);
                 return "Updated successful";
             }
             catch (Exception ex)
