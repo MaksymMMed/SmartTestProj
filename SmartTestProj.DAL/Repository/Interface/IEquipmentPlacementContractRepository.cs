@@ -1,6 +1,8 @@
-﻿namespace SmartTestProj.DAL.Repository.Interface
+﻿using SmartTestProj.DAL.Entities;
+
+namespace SmartTestProj.DAL.Repository.Interface
 {
-    public interface IEquipmentPlacementContractRepository
+    public interface IEquipmentPlacementContractRepository:IRepository<EquipmentPlacementContract>
     {
     }
 }

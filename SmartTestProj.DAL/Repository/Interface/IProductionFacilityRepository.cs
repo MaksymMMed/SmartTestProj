@@ -2,7 +2,7 @@
 
 namespace SmartTestProj.DAL.Repository.Interface
 {
-    public interface IProductionFacilityRepository
+    public interface IProductionFacilityRepository:IRepository<ProductionFacility>
     {
         Task<ProductionFacility> GetCompleteById(Guid id);
     }

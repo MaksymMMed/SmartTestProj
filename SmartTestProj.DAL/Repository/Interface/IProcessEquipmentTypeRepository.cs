@@ -2,7 +2,7 @@
 
 namespace SmartTestProj.DAL.Repository.Interface
 {
-    internal interface IProcessEquipmentTypeRepository
+    public interface IProcessEquipmentTypeRepository:IRepository<ProcessEquipmentType>
     {
         Task<ProcessEquipmentType> GetCompleteById(Guid id);
     }

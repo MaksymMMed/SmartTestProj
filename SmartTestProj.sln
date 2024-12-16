@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTestProj.API", "SmartTestProj.API\SmartTestProj.API.csproj", "{5D40CA8F-B02B-4578-9B60-EC52F06ED303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTestProj.API", "SmartTestProj.API\SmartTestProj.API.csproj", "{5D40CA8F-B02B-4578-9B60-EC52F06ED303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTestProj.DAL", "SmartTestProj.DAL\SmartTestProj.DAL.csproj", "{7FB3C534-7A11-4B95-B641-026CFDF5AF09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartTestProj.DAL", "SmartTestProj.DAL\SmartTestProj.DAL.csproj", "{7FB3C534-7A11-4B95-B641-026CFDF5AF09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTestProj.BLL", "SmartTestProj.BLL\SmartTestProj.BLL.csproj", "{4CAA7216-6DD1-4538-9FA2-667DDCC3C41D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7FB3C534-7A11-4B95-B641-026CFDF5AF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FB3C534-7A11-4B95-B641-026CFDF5AF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FB3C534-7A11-4B95-B641-026CFDF5AF09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CAA7216-6DD1-4538-9FA2-667DDCC3C41D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CAA7216-6DD1-4538-9FA2-667DDCC3C41D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CAA7216-6DD1-4538-9FA2-667DDCC3C41D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CAA7216-6DD1-4538-9FA2-667DDCC3C41D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
