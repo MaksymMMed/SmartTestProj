@@ -13,7 +13,8 @@ namespace SmartTestProj.DAL.Repository.Realization
 
         public override async Task<ProductionFacility> GetCompleteById(Guid id)
         {
-            var item = await table.Include(x => x.EquipmentPlacementContract).Where(x => x.Id == id).FirstOrDefaultAsync();
+            //var item = await table.Include(x => x.EquipmentPlacementContract).Where(x => x.Id == id).FirstOrDefaultAsync();
+            var item = await table.Where(x => x.Id == id).FirstOrDefaultAsync();
             return item;
         }
     }

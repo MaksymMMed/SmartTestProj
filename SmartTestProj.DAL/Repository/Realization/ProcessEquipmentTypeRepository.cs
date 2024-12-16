@@ -5,7 +5,7 @@ using SmartTestProj.DAL.Repository.Interface;
 
 namespace SmartTestProj.DAL.Repository.Realization
 {
-    internal class ProcessEquipmentTypeRepository : GenericRepository<ProcessEquipmentType>, IProcessEquipmentTypeRepository
+    public class ProcessEquipmentTypeRepository : GenericRepository<ProcessEquipmentType>, IProcessEquipmentTypeRepository
     {
         public ProcessEquipmentTypeRepository(AppDbContext context) : base(context)
         {
@@ -13,7 +13,8 @@ namespace SmartTestProj.DAL.Repository.Realization
 
         public override async Task<ProcessEquipmentType> GetCompleteById(Guid id)
         {
-            var item = await table.Include(x => x.EquipmentPlacementContract).Where(x => x.Id == id).FirstOrDefaultAsync();
+            //var item = await table.Include(x => x.EquipmentPlacementContract).Where(x => x.Id == id).FirstOrDefaultAsync();
+            var item = await table.Where(x => x.Id == id).FirstOrDefaultAsync();
             return item;
         }
     }
