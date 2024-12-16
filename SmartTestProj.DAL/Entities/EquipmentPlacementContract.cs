@@ -2,11 +2,10 @@
 {
     public class EquipmentPlacementContract
     {
-        public Guid Id { get; set; }
         public Guid ProductionFacilityId { get; set; }
-        public Guid ProcessEquipmentType { get; set; }
-        public ProcessEquipmentType? ProcessEquipment { get; set; }
-        public ProductionFacility? Facility { get; set; }  
+        public Guid ProcessEquipmentTypeId { get; set; }
+        public ProcessEquipmentType? ProcessEquipmentType { get; set; }
+        public ProductionFacility? ProductionFacility { get; set; }  
         public int UnitsCount { get; set; }
     }
 }
