@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SmartTestProj.BLL.Dto.ProductionFacility;
 using SmartTestProj.BLL.Services.Interfaces;
 
@@ -15,6 +16,7 @@ namespace SmartTestProj.API.Controllers
             _productionFacilityService = productionFacilityService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -29,6 +31,7 @@ namespace SmartTestProj.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid Id)
         {
@@ -43,6 +46,7 @@ namespace SmartTestProj.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductionFacilityDto dto)
         {
@@ -57,6 +61,7 @@ namespace SmartTestProj.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateProductionFacilityDto dto)
         {

@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SmartTestProj.DAL.Configuration;
 using SmartTestProj.DAL.Entities;
 
 namespace SmartTestProj.DAL.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
         public DbSet<EquipmentPlacementContract> EquipmentPlacementContract { get; set; }
