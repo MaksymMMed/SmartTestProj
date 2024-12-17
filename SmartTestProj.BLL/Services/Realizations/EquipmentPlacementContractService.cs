@@ -29,9 +29,9 @@ namespace SmartTestProj.BLL.Services.Realizations
                 await _equipmentPlacementContractRepository.Delete(id);
                 return "Deleted successful";
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException notFound)
             {
-                return "Item not found";
+                throw new KeyNotFoundException(notFound.Message);
             }
 
             catch (Exception ex)
@@ -55,7 +55,6 @@ namespace SmartTestProj.BLL.Services.Realizations
                 {
                     return ("Target production facility not found");
                 }
-                // Додати декілька типів equipment на один facility 
                 if (equipment == null)
                 {
                     return ("Target process equipment type not found");

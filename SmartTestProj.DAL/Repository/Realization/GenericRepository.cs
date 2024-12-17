@@ -18,7 +18,11 @@ namespace SmartTestProj.DAL.Repository.Realization
         public virtual async Task Delete(Guid id)
         {
             var item = await table.FindAsync(id);
-            table.Remove(item!);
+            if (item == null) 
+            {
+                throw new KeyNotFoundException("Item not found");
+            }
+            table.Remove(item);
             await context.SaveChangesAsync();
         }
 
@@ -33,7 +37,7 @@ namespace SmartTestProj.DAL.Repository.Realization
         public virtual async Task<T> GetById(Guid id)
         {
             var item = await table.FindAsync(id);
-            return item!;
+            return item;
         }
 
         public virtual async Task Insert(T entity)

@@ -2,6 +2,7 @@
 using SmartTestProj.BLL.Services.Interfaces;
 using SmartTestProj.DAL.Entities;
 using SmartTestProj.DAL.Repository.Interface;
+using System.Net.Http.Headers;
 
 namespace SmartTestProj.BLL.Services.Realizations
 {
@@ -21,9 +22,9 @@ namespace SmartTestProj.BLL.Services.Realizations
                 await _productionFacilityRepository.Delete(id);
                 return "Deleted successful";
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException notFound)
             {
-                return "Item not found";
+                throw new KeyNotFoundException(notFound.Message);
             }
 
             catch (Exception ex)

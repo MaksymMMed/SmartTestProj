@@ -27,22 +27,26 @@ namespace SmartTestProj.API.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception("Something went wrong", ex);
+                return StatusCode(500, ex.Message);
             }
         }
 
         [Authorize]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             try
             {
-                var result = await _productionFacilityService.Delete(Id);
+                var result = await _productionFacilityService.Delete(id);
                 return Ok(result);
+            }
+            catch (KeyNotFoundException notFound)
+            {
+                return StatusCode(404, notFound.Message);
             }
             catch (Exception ex)
             {
-                throw new Exception("Something went wrong", ex);
+                return StatusCode(500,ex.Message);
             }
         }
 
@@ -57,7 +61,7 @@ namespace SmartTestProj.API.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception("Something went wrong", ex);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -72,7 +76,7 @@ namespace SmartTestProj.API.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception("Something went wrong", ex);
+                return StatusCode(500, ex.Message);
             }
         }
     }

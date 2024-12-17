@@ -22,9 +22,9 @@ namespace SmartTestProj.BLL.Services.Realizations
                 await _processEquipmentTypeRepository.Delete(id);
                 return "Deleted successful";
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException notFound)
             {
-                return "Item not found";
+                throw new KeyNotFoundException(notFound.Message);
             }
 
             catch (Exception ex)
