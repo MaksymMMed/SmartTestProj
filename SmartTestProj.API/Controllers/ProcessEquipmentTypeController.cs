@@ -5,7 +5,7 @@ using SmartTestProj.BLL.Services.Interfaces;
 
 namespace SmartTestProj.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("SmartTestProj/[controller]")]
     [ApiController]
     public class ProcessEquipmentTypeController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace SmartTestProj.API.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid Id)
         {
             try
@@ -61,6 +61,7 @@ namespace SmartTestProj.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateProcessEquipmentType dto)
         {

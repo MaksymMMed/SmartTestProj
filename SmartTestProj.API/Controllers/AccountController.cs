@@ -4,7 +4,7 @@ using SmartTestProj.BLL.Services.Interfaces;
 
 namespace SmartTestProj.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("SmartTestProj/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {

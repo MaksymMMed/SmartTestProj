@@ -23,22 +23,22 @@ builder.Services.AddTransient<IEquipmentPlacementContractService, EquipmentPlace
 builder.Services.AddTransient<IProductionFacilityService, ProductionFacilityService>();
 builder.Services.AddTransient<IProcessEquipmentTypeService, ProcessEquipmentTypeService>();
 
-builder.Services.AddIdentity<IdentityUser,IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
+builder.Services.AddIdentityCore<IdentityUser>()
+.AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
 
-builder.Services.AddAuthentication();
+builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddTokenInSwagger();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAnyOrigin", builder =>
-    {
-        builder.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAnyOrigin", builder =>
+//    {
+//        builder.AllowAnyOrigin()
+//            .AllowAnyMethod()
+//            .AllowAnyHeader();
+//    });
+//});
 
 var app = builder.Build();
 
@@ -51,7 +51,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+    
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

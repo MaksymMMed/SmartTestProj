@@ -5,7 +5,7 @@ using SmartTestProj.BLL.Services.Interfaces;
 
 namespace SmartTestProj.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("SmartTestProj/[controller]")]
     [ApiController]
     public class EquipmentPlacementContractController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace SmartTestProj.API.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid Id)
         {
             try
