@@ -5,8 +5,8 @@ namespace SmartTestProj.BLL.Services.Interfaces
     public interface IProcessEquipmentTypeService
     {
         Task<string> Delete(Guid id);
-        Task<List<GetProcessEquipmentType>> GetAll();
-        Task<string> Insert(CreateProcessEquipmentType dto);
-        Task<string> Update(UpdateProcessEquipmentType dto);
+        Task<List<GetProcessEquipmentTypeDto>> GetAll();
+        Task<string> Insert(CreateProcessEquipmentTypeDto dto);
+        Task<string> Update(UpdateProcessEquipmentTypeDto dto);
     }
 }

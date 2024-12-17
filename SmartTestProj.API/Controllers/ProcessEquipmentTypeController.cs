@@ -52,7 +52,7 @@ namespace SmartTestProj.API.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateProcessEquipmentType dto)
+        public async Task<IActionResult> Create([FromBody] CreateProcessEquipmentTypeDto dto)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace SmartTestProj.API.Controllers
 
         [Authorize]
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateProcessEquipmentType dto)
+        public async Task<IActionResult> Update([FromBody] UpdateProcessEquipmentTypeDto dto)
         {
             try
             {

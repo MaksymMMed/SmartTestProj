@@ -33,7 +33,7 @@ namespace SmartTestProj.BLL.Services.Realizations
             }
         }
 
-        public async Task<string> Insert(CreateProcessEquipmentType dto)
+        public async Task<string> Insert(CreateProcessEquipmentTypeDto dto)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace SmartTestProj.BLL.Services.Realizations
             }
         }
 
-        public async Task<string> Update(UpdateProcessEquipmentType dto)
+        public async Task<string> Update(UpdateProcessEquipmentTypeDto dto)
         {
             try
             {
@@ -86,12 +86,12 @@ namespace SmartTestProj.BLL.Services.Realizations
             }
         }
 
-        public async Task<List<GetProcessEquipmentType>> GetAll()
+        public async Task<List<GetProcessEquipmentTypeDto>> GetAll()
         {
             try
             {
                 var items = await _processEquipmentTypeRepository.GetAll();
-                var result = items.Select(item => new GetProcessEquipmentType
+                var result = items.Select(item => new GetProcessEquipmentTypeDto
                 {
                     Id = item.Id,
                     Name = item.Name,

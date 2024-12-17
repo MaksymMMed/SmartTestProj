@@ -95,7 +95,7 @@ namespace SmartTestProj.BLL.Services.Realizations
                         Name = item.ProductionFacility.Name,
                         StandartArea = item.ProductionFacility.StandartArea,
                     },
-                    ProcessEquipmentType = new GetProcessEquipmentType()
+                    ProcessEquipmentType = new GetProcessEquipmentTypeDto()
                     {
                         Id = item.ProcessEquipmentType!.Id,
                         Name = item.ProcessEquipmentType.Name,

@@ -8,7 +8,7 @@ namespace SmartTestProj.BLL.Dto.EquipmentPlacementContract
         public Guid ProductionFacilityId { get; set; }
         public Guid ProcessEquipmentTypeId { get; set; }
         public int UnitsCount { get; set; }
-        public GetProcessEquipmentType ProcessEquipmentType { get; set; }
+        public GetProcessEquipmentTypeDto ProcessEquipmentType { get; set; }
         public GetProductionFacilityDto ProductionFacility { get; set; }
     }
 }

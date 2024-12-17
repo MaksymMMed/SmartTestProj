@@ -1,6 +1,6 @@
 ﻿namespace SmartTestProj.BLL.Dto.ProcessEquipmentType
 {
-    public class GetProcessEquipmentType
+    public class GetProcessEquipmentTypeDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
