@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmartTestProj.BLL.BackgroundServices;
 using SmartTestProj.BLL.Dto.EquipmentPlacementContract;
 using SmartTestProj.BLL.Services.Interfaces;
+using System.Diagnostics.Contracts;
 
 namespace SmartTestProj.API.Controllers
 {
@@ -10,10 +12,12 @@ namespace SmartTestProj.API.Controllers
     public class EquipmentPlacementContractController : ControllerBase
     {
         private readonly IEquipmentPlacementContractService _equipmentPlacementContractService;
+        private readonly LoggingService _loggingService;
 
-        public EquipmentPlacementContractController(IEquipmentPlacementContractService equipmentPlacementContractService)
+        public EquipmentPlacementContractController(IEquipmentPlacementContractService equipmentPlacementContractService, LoggingService loggingService)
         {
             _equipmentPlacementContractService = equipmentPlacementContractService;
+            _loggingService = loggingService;
         }
 
         [Authorize]
@@ -32,12 +36,13 @@ namespace SmartTestProj.API.Controllers
         }
 
         [Authorize]
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid equipmentId,Guid facilityId)
         {
             try
             {
-                var result = await _equipmentPlacementContractService.Delete(id);
+                var result = await _equipmentPlacementContractService.Delete(equipmentId,facilityId);
+
                 return Ok(result);
             }
             catch (KeyNotFoundException notFound)
@@ -57,6 +62,10 @@ namespace SmartTestProj.API.Controllers
             try
             {
                 var result = await _equipmentPlacementContractService.Insert(dto);
+
+                Hangfire.BackgroundJob.Enqueue(() =>
+                _loggingService.LogMessage($"Contract with units count {dto.UnitsCount} created"));
+
                 return Ok(result);
             }
             catch (Exception ex)

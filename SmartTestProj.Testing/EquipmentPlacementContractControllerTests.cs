@@ -5,19 +5,25 @@ using SmartTestProj.BLL.Dto.EquipmentPlacementContract;
 using SmartTestProj.BLL.Services.Interfaces;
 using AutoFixture;
 using FluentAssertions;
+using SmartTestProj.BLL.BackgroundServices;
+using Microsoft.Extensions.Logging;
 
 namespace SmartTestProj.Tests.Controllers
 {
     public class EquipmentPlacementContractControllerTests
     {
         private readonly Mock<IEquipmentPlacementContractService> _mockService;
+        private readonly Mock<ILogger<LoggingService>> _loggerMock;
+        private readonly LoggingService _loggingService;
         private readonly EquipmentPlacementContractController _controller;
         private readonly IFixture _fixture;
 
         public EquipmentPlacementContractControllerTests()
         {
             _mockService = new Mock<IEquipmentPlacementContractService>();
-            _controller = new EquipmentPlacementContractController(_mockService.Object);
+            _loggerMock = new Mock<ILogger<LoggingService>>();
+            _loggingService = new LoggingService(_loggerMock.Object);
+            _controller = new EquipmentPlacementContractController(_mockService.Object,_loggingService);
             _fixture = new Fixture();
         }
 
@@ -80,11 +86,12 @@ namespace SmartTestProj.Tests.Controllers
         [Fact]
         public async Task Delete_ReturnsOkResult_WhenSuccess()
         {
-            var id = Guid.NewGuid();
-            _mockService.Setup(service => service.Delete(id))
+            var equipmentId = Guid.NewGuid();
+            var facilityId = Guid.NewGuid();
+            _mockService.Setup(service => service.Delete(equipmentId,facilityId))
                         .ReturnsAsync("Deleted successful");
 
-            var result = await _controller.Delete(id);
+            var result = await _controller.Delete(equipmentId,facilityId);
 
             result.Should().BeOfType<OkObjectResult>();
             var okResult = result as OkObjectResult;
@@ -94,11 +101,12 @@ namespace SmartTestProj.Tests.Controllers
         [Fact]
         public async Task Delete_ReturnsInternalServerError_WhenExceptionOccurs()
         {
-            var id = Guid.NewGuid();
-            _mockService.Setup(service => service.Delete(id))
+            var equipmentId = Guid.NewGuid();
+            var facilityId = Guid.NewGuid();
+            _mockService.Setup(service => service.Delete(equipmentId, facilityId))
                         .ThrowsAsync(new Exception("Something went wrong"));
 
-            var result = await _controller.Delete(id);
+            var result = await _controller.Delete(equipmentId, facilityId);
 
             result.Should().BeOfType<ObjectResult>();
             var statusCodeResult = result as ObjectResult;
@@ -108,11 +116,12 @@ namespace SmartTestProj.Tests.Controllers
         [Fact]
         public async Task Delete_ReturnsNotFound_WhenNoRecordIsDeleted()
         {
-            var id = Guid.NewGuid();
-            _mockService.Setup(service => service.Delete(id))
+            var equipmentId = Guid.NewGuid();
+            var facilityId = Guid.NewGuid();
+            _mockService.Setup(service => service.Delete(equipmentId, facilityId))
                         .ThrowsAsync(new KeyNotFoundException("Item not found"));
 
-            var result = await _controller.Delete(id);
+            var result = await _controller.Delete(equipmentId, facilityId);
 
             result.Should().BeOfType<ObjectResult>();
             var statusCodeResult = result as ObjectResult;

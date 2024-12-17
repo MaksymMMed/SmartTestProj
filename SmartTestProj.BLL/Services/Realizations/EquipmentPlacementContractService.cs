@@ -22,11 +22,11 @@ namespace SmartTestProj.BLL.Services.Realizations
             _processEquipmentTypeRepository = processEquipmentTypeRepository;
         }
 
-        public async Task<string> Delete(Guid id)
+        public async Task<string> Delete(Guid equipmentId,Guid facilityId)
         {
             try
             {
-                await _equipmentPlacementContractRepository.Delete(id);
+                await _equipmentPlacementContractRepository.Delete(equipmentId,facilityId);
                 return "Deleted successful";
             }
             catch (KeyNotFoundException notFound)

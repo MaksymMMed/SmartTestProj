@@ -1,5 +1,7 @@
+using Hangfire;
 using Microsoft.AspNetCore.Identity;
 using SmartTestProj.API.Extensions;
+using SmartTestProj.BLL.BackgroundServices;
 using SmartTestProj.BLL.Services.Interfaces;
 using SmartTestProj.BLL.Services.Realizations;
 using SmartTestProj.DAL.Context;
@@ -23,6 +25,9 @@ builder.Services.AddTransient<IEquipmentPlacementContractService, EquipmentPlace
 builder.Services.AddTransient<IProductionFacilityService, ProductionFacilityService>();
 builder.Services.AddTransient<IProcessEquipmentTypeService, ProcessEquipmentTypeService>();
 
+builder.Services.AddTransient<LoggingService>();
+
+
 builder.Services.AddIdentityCore<IdentityUser>()
 .AddEntityFrameworkStores<AppDbContext>()
 .AddDefaultTokenProviders();
@@ -39,6 +44,15 @@ builder.Services.AddTokenInSwagger();
 //            .AllowAnyHeader();
 //    });
 //});
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+builder.Services.AddHangfire((_, config) =>
+{
+    config.UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+builder.Services.AddHangfireServer();
 
 var app = builder.Build();
 
