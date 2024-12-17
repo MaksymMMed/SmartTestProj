@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SmartTestProj.DAL.Entities;
+using SmartTestProj.DAL.Seeding;
 
 namespace SmartTestProj.DAL.Configuration
 {
@@ -24,6 +25,8 @@ namespace SmartTestProj.DAL.Configuration
             builder
                 .Property(x => x.UnitsCount)
                 .IsRequired();
+
+            builder.HasData(SeedData.Contracts);
         }
     }
 }
