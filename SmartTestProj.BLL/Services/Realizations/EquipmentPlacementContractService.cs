@@ -10,10 +10,16 @@ namespace SmartTestProj.BLL.Services.Realizations
     public class EquipmentPlacementContractService : IEquipmentPlacementContractService
     {
         private readonly IEquipmentPlacementContractRepository _equipmentPlacementContractRepository;
+        private readonly IProductionFacilityRepository _productionFacilityRepository;
+        private readonly IProcessEquipmentTypeRepository _processEquipmentTypeRepository;
 
-        public EquipmentPlacementContractService(IEquipmentPlacementContractRepository equipmentPlacementContractRepository)
+        public EquipmentPlacementContractService(IEquipmentPlacementContractRepository equipmentPlacementContractRepository,
+            IProductionFacilityRepository productionFacilityRepository,
+            IProcessEquipmentTypeRepository processEquipmentTypeRepository)
         {
             _equipmentPlacementContractRepository = equipmentPlacementContractRepository;
+            _productionFacilityRepository = productionFacilityRepository;
+            _processEquipmentTypeRepository = processEquipmentTypeRepository;
         }
 
         public async Task<string> Delete(Guid id)
@@ -42,6 +48,23 @@ namespace SmartTestProj.BLL.Services.Realizations
                 {
                     return ("Units count must be creater than 0");
                 }
+                var facility = await _productionFacilityRepository.GetById(dto.ProductionFacilityId);
+                var equipment = await _processEquipmentTypeRepository.GetById(dto.ProcessEquipmentTypeId);
+
+                if (facility == null) 
+                {
+                    return ("Target production facility not found");
+                }
+                // Додати декілька типів equipment на один facility 
+                if (equipment == null)
+                {
+                    return ("Target process equipment type not found");
+                }
+                if (facility.StandartArea < equipment.Area)
+                {
+                    return ($"Not enough space in target facility, available {facility.StandartArea} m^2, needed {equipment.Area} m^2");
+                }
+
                 var item = new EquipmentPlacementContract();
                 {
                     item.ProductionFacilityId = dto.ProductionFacilityId;

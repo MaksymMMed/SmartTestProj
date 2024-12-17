@@ -1,4 +1,6 @@
-﻿using SmartTestProj.BLL.Dto.ProcessEquipmentType;
+﻿
+
+using SmartTestProj.BLL.Dto.ProcessEquipmentType;
 using SmartTestProj.BLL.Services.Interfaces;
 using SmartTestProj.DAL.Entities;
 using SmartTestProj.DAL.Repository.Interface;
@@ -8,7 +10,6 @@ namespace SmartTestProj.BLL.Services.Realizations
     public class ProcessEquipmentTypeService : IProcessEquipmentTypeService
     {
         private readonly IProcessEquipmentTypeRepository _processEquipmentTypeRepository;
-
         public ProcessEquipmentTypeService(IProcessEquipmentTypeRepository processEquipmentTypeRepository)
         {
             _processEquipmentTypeRepository = processEquipmentTypeRepository;
