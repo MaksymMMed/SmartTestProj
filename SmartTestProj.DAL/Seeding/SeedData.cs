@@ -40,7 +40,27 @@ namespace SmartTestProj.DAL.Seeding
                     Id = new Guid("BBD5C0D3-A45D-490A-B26D-D503B6A82266"),
                     Name = "Hangar 6",
                     StandartArea = 150
-                }
+                },
+                new ProductionFacility{
+                    Id = new Guid("BBD5C0D3-A45D-490A-B26D-D503B6A82267"),
+                    Name = "Hangar 7",
+                    StandartArea = 130
+                },
+                new ProductionFacility{
+                    Id = new Guid("BBD5C0D3-A45D-490A-B26D-D503B6A82268"),
+                    Name = "Hangar 8",
+                    StandartArea = 190
+                },
+                new ProductionFacility{
+                    Id = new Guid("BBD5C0D3-A45D-490A-B26D-D503B6A82269"),
+                    Name = "Hangar 9",
+                    StandartArea = 200
+                },
+                new ProductionFacility{
+                    Id = new Guid("BBD5C0D3-A45D-490A-B26D-D503B6A82270"),
+                    Name = "Hangar 10",
+                    StandartArea = 150
+                },
             ];
         }
 

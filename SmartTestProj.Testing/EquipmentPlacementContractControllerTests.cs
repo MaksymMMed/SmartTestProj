@@ -7,6 +7,7 @@ using AutoFixture;
 using FluentAssertions;
 using SmartTestProj.BLL.BackgroundServices;
 using Microsoft.Extensions.Logging;
+using SmartTestProj.BLL.BackgroundService;
 
 namespace SmartTestProj.Tests.Controllers
 {
@@ -15,6 +16,7 @@ namespace SmartTestProj.Tests.Controllers
         private readonly Mock<IEquipmentPlacementContractService> _mockService;
         private readonly Mock<ILogger<LoggingService>> _loggerMock;
         private readonly LoggingService _loggingService;
+        private readonly Mock<IBackgroundJobService> _jobServiceMock;
         private readonly EquipmentPlacementContractController _controller;
         private readonly IFixture _fixture;
 
@@ -23,7 +25,8 @@ namespace SmartTestProj.Tests.Controllers
             _mockService = new Mock<IEquipmentPlacementContractService>();
             _loggerMock = new Mock<ILogger<LoggingService>>();
             _loggingService = new LoggingService(_loggerMock.Object);
-            _controller = new EquipmentPlacementContractController(_mockService.Object,_loggingService);
+            _jobServiceMock = new Mock<IBackgroundJobService>();
+            _controller = new EquipmentPlacementContractController(_mockService.Object,_loggingService,_jobServiceMock.Object);
             _fixture = new Fixture();
         }
 
@@ -56,11 +59,12 @@ namespace SmartTestProj.Tests.Controllers
         }
 
         [Fact]
-        public async Task Create_ReturnsOkResult_WithCreatedFacility()
+        public async Task Create_ReturnsOkResult_WithCreated()
         {
             var dto = _fixture.Create<CreateEquipmentPlacementContractDto>();
             _mockService.Setup(service => service.Insert(dto))
                         .ReturnsAsync("Created successful");
+
 
             var result = await _controller.Create(dto);
 
@@ -112,7 +116,7 @@ namespace SmartTestProj.Tests.Controllers
             var statusCodeResult = result as ObjectResult;
             statusCodeResult.StatusCode.Should().Be(500);
         }
-
+        // замокати hangfire, щоб тест на створення нормально працював
         [Fact]
         public async Task Delete_ReturnsNotFound_WhenNoRecordIsDeleted()
         {

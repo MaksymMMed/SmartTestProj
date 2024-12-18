@@ -1,6 +1,7 @@
 using Hangfire;
 using Microsoft.AspNetCore.Identity;
 using SmartTestProj.API.Extensions;
+using SmartTestProj.BLL.BackgroundService;
 using SmartTestProj.BLL.BackgroundServices;
 using SmartTestProj.BLL.Services.Interfaces;
 using SmartTestProj.BLL.Services.Realizations;
@@ -27,6 +28,7 @@ builder.Services.AddTransient<IProcessEquipmentTypeService, ProcessEquipmentType
 
 builder.Services.AddTransient<LoggingService>();
 
+builder.Services.AddSingleton<IBackgroundJobService,HangfireBackgroundJobService>();
 
 builder.Services.AddIdentityCore<IdentityUser>()
 .AddEntityFrameworkStores<AppDbContext>()

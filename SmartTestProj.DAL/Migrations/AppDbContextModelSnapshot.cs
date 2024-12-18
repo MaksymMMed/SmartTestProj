@@ -379,6 +379,30 @@ namespace SmartTestProj.DAL.Migrations
                             Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82266"),
                             Name = "Hangar 6",
                             StandartArea = 150
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82267"),
+                            Name = "Hangar 7",
+                            StandartArea = 130
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82268"),
+                            Name = "Hangar 8",
+                            StandartArea = 190
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82269"),
+                            Name = "Hangar 9",
+                            StandartArea = 200
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82270"),
+                            Name = "Hangar 10",
+                            StandartArea = 150
                         });
                 });
 

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmartTestProj.BLL.BackgroundService;
 using SmartTestProj.BLL.BackgroundServices;
 using SmartTestProj.BLL.Dto.EquipmentPlacementContract;
 using SmartTestProj.BLL.Services.Interfaces;
-using System.Diagnostics.Contracts;
 
 namespace SmartTestProj.API.Controllers
 {
@@ -13,11 +13,15 @@ namespace SmartTestProj.API.Controllers
     {
         private readonly IEquipmentPlacementContractService _equipmentPlacementContractService;
         private readonly LoggingService _loggingService;
+        private readonly IBackgroundJobService _backgroundJobService;
 
-        public EquipmentPlacementContractController(IEquipmentPlacementContractService equipmentPlacementContractService, LoggingService loggingService)
+        public EquipmentPlacementContractController(IEquipmentPlacementContractService equipmentPlacementContractService,
+            LoggingService loggingService,
+            IBackgroundJobService backgroundJobService)
         {
             _equipmentPlacementContractService = equipmentPlacementContractService;
             _loggingService = loggingService;
+            _backgroundJobService = backgroundJobService;
         }
 
         [Authorize]
@@ -62,9 +66,8 @@ namespace SmartTestProj.API.Controllers
             try
             {
                 var result = await _equipmentPlacementContractService.Insert(dto);
-
-                Hangfire.BackgroundJob.Enqueue(() =>
-                _loggingService.LogMessage($"Contract with units count {dto.UnitsCount} created"));
+                string message = ($"Contract with units count {dto.UnitsCount} created");
+                _backgroundJobService.Enqueue(() => _loggingService.LogMessage(message));
 
                 return Ok(result);
             }

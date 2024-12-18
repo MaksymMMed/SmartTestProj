@@ -50,7 +50,7 @@ namespace SmartTestProj.Tests.Controllers
         }
 
         [Fact]
-        public async Task Create_ReturnsOkResult_WithCreatedFacility()
+        public async Task Create_ReturnsOkResult_WithCreated()
         {
             var dto = _fixture.Create<CreateProcessEquipmentTypeDto>();
             _mockService.Setup(service => service.Insert(dto))
@@ -78,7 +78,7 @@ namespace SmartTestProj.Tests.Controllers
         }
 
         [Fact]
-        public async Task Update_ReturnsOkResult_WithUpdatedFacility()
+        public async Task Update_ReturnsOkResult_WithUpdated()
         {
             var dto = _fixture.Create<UpdateProcessEquipmentTypeDto>();
             var updatedFacility = _fixture.Create<GetProcessEquipmentTypeDto>();

@@ -36,7 +36,7 @@ namespace SmartTestProj.BLL.Services.Realizations
 
             catch (Exception ex)
             {
-                throw new ApplicationException($"Something went wrong", ex);
+                throw new ApplicationException($"Something went wrong {ex.Message}", ex);
             }
         }
 
@@ -59,6 +59,13 @@ namespace SmartTestProj.BLL.Services.Realizations
                 {
                     return ("Target process equipment type not found");
                 }
+
+                var contractExist = await _equipmentPlacementContractRepository.ContractExist(equipment.Id,facility.Id);
+                if (contractExist)
+                {
+                    return "Contract with this facility and this equipment already exist";
+                }
+
                 if (facility.StandartArea < equipment.Area)
                 {
                     return ($"Not enough space in target facility, available {facility.StandartArea} m^2, needed {equipment.Area} m^2");
@@ -75,7 +82,7 @@ namespace SmartTestProj.BLL.Services.Realizations
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Something went wrong", ex);
+                throw new ApplicationException($"Something went wrong {ex.Message}", ex);
             }
         }
 
@@ -108,7 +115,7 @@ namespace SmartTestProj.BLL.Services.Realizations
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Something went wrong", ex);
+                throw new ApplicationException($"Something went wrong {ex.Message}", ex);
             }
         }
     }

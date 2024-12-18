@@ -11,9 +11,17 @@ namespace SmartTestProj.DAL.Repository.Realization
         {
         }
 
-        public override Task<EquipmentPlacementContract> GetCompleteById(Guid id)
+        public async Task<bool> ContractExist(Guid equipmentId, Guid facilityId)
         {
-            throw new NotImplementedException();
+            var item = await table
+                .FirstOrDefaultAsync(c => c.ProductionFacilityId == facilityId
+                && c.ProcessEquipmentTypeId == equipmentId);
+
+            if (item == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         public override Task Delete(Guid id)
@@ -40,6 +48,11 @@ namespace SmartTestProj.DAL.Repository.Realization
         {
             var items = await table.Include(x => x.ProcessEquipmentType).Include(x => x.ProductionFacility).ToListAsync();
             return items;
+        }
+
+        public override Task<EquipmentPlacementContract> GetCompleteById(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -12,8 +12,8 @@ using SmartTestProj.DAL.Context;
 namespace SmartTestProj.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241217143706_init")]
-    partial class init
+    [Migration("20241218123604_init-with-data")]
+    partial class initwithdata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -243,6 +243,38 @@ namespace SmartTestProj.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("EquipmentPlacementContract");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductionFacilityId = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82263"),
+                            ProcessEquipmentTypeId = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82261"),
+                            UnitsCount = 25
+                        },
+                        new
+                        {
+                            ProductionFacilityId = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82262"),
+                            ProcessEquipmentTypeId = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82263"),
+                            UnitsCount = 15
+                        },
+                        new
+                        {
+                            ProductionFacilityId = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82261"),
+                            ProcessEquipmentTypeId = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82262"),
+                            UnitsCount = 30
+                        },
+                        new
+                        {
+                            ProductionFacilityId = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82265"),
+                            ProcessEquipmentTypeId = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82264"),
+                            UnitsCount = 20
+                        },
+                        new
+                        {
+                            ProductionFacilityId = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82266"),
+                            ProcessEquipmentTypeId = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82265"),
+                            UnitsCount = 10
+                        });
                 });
 
             modelBuilder.Entity("SmartTestProj.DAL.Entities.ProcessEquipmentType", b =>
@@ -254,9 +286,6 @@ namespace SmartTestProj.DAL.Migrations
                     b.Property<int>("Area")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("EquipmentPlacementContractId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -265,15 +294,44 @@ namespace SmartTestProj.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProcessEquipmentType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82261"),
+                            Area = 50,
+                            Name = "Wood Processing"
+                        },
+                        new
+                        {
+                            Id = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82262"),
+                            Area = 100,
+                            Name = "Textile Mill"
+                        },
+                        new
+                        {
+                            Id = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82263"),
+                            Area = 180,
+                            Name = "Paper Mill"
+                        },
+                        new
+                        {
+                            Id = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82264"),
+                            Area = 120,
+                            Name = "Food Processing Plant"
+                        },
+                        new
+                        {
+                            Id = new Guid("abd5c0d3-a45d-490a-b26d-d503b6a82265"),
+                            Area = 140,
+                            Name = "Glass Factory"
+                        });
                 });
 
             modelBuilder.Entity("SmartTestProj.DAL.Entities.ProductionFacility", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("EquipmentPlacementContractId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -287,6 +345,68 @@ namespace SmartTestProj.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductionFaciliti");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82261"),
+                            Name = "Hangar 1",
+                            StandartArea = 120
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82262"),
+                            Name = "Hangar 2",
+                            StandartArea = 200
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82263"),
+                            Name = "Hangar 3",
+                            StandartArea = 50
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82264"),
+                            Name = "Hangar 4",
+                            StandartArea = 100
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82265"),
+                            Name = "Hangar 5",
+                            StandartArea = 150
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82266"),
+                            Name = "Hangar 6",
+                            StandartArea = 150
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82267"),
+                            Name = "Hangar 7",
+                            StandartArea = 130
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82268"),
+                            Name = "Hangar 8",
+                            StandartArea = 190
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82269"),
+                            Name = "Hangar 9",
+                            StandartArea = 200
+                        },
+                        new
+                        {
+                            Id = new Guid("bbd5c0d3-a45d-490a-b26d-d503b6a82270"),
+                            Name = "Hangar 10",
+                            StandartArea = 150
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
